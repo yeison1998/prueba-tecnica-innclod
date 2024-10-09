@@ -1,1 +1,41 @@
-<p>register works!</p>
+<div class="content">
+    <mat-card class="card">
+        <mat-card-header>
+            <mat-card-title-group class="align-center">
+                <mat-card-title>Registrarse</mat-card-title>
+            </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="registerForm" class="row">
+                <mat-form-field appearance="outline" class="col-12 mt-4">
+                    <mat-label>Nombre completo:</mat-label>
+                    <input type="text" matInput formControlName="name">
+                    <mat-error *ngIf="name?.hasError('required')">
+                        El nombre es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-12">
+                    <mat-label>Correo electrónico:</mat-label>
+                    <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+                    <mat-error *ngIf="email?.hasError('email') && !email?.hasError('required')">
+                        Por favor ingrese un correo valido
+                    </mat-error>
+                    <mat-error *ngIf="email?.hasError('required')">
+                        El correo electrónico es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-12">
+                    <mat-label>Contraseña:</mat-label>
+                    <input [type]="visibility ? 'password': 'text'" matInput formControlName="password">
+                    <mat-icon matSuffix (click)="visibility = !visibility">{{ visibility ? 'visibility' :
+                        'visibility_off'}}</mat-icon>
+                    <mat-error *ngIf="password?.hasError('required')">
+                        La contraseña es <strong>requerida</strong>
+                    </mat-error>
+                </mat-form-field>
+                <button class="button-register mt-3" mat-raised-button (click)="registerUser()">Registrarse</button>
+                <button class="mt-3" mat-raised-button [routerLink]="['/login']" routerLinkActive="router-link-active" >Cancelar</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
