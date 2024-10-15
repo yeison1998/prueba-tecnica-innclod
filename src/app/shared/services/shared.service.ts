@@ -19,8 +19,8 @@ export class SharedService {
     return users ? JSON.parse(users) : [];
   }
 
-  logout(): void {
-    localStorage.removeItem('users');
+  finishSessions(): void {
     localStorage.removeItem('validateSession');
   }
+
 }

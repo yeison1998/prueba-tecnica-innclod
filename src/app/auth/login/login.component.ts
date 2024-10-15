@@ -20,7 +20,12 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.clearSession();
     this.getUsers();
+  }
+
+  clearSession(): void {
+    this.sharedServices.finishSessions();
   }
 
   getUsers(): void {

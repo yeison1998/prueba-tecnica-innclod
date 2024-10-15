@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
-import { Project } from '../models/project';
+import { Task } from '../models/task';
 
 const url = environment.url;
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectService {
+export class TaskService {
 
   constructor(private http: HttpClient) { }
 
-  getProject() {
-    return this.http.get<Project[]>(`${url}/users`);
+  getTaskByProject(projectId: number) {
+    return this.http.get<Task[]>(`${url}/todos?userId=${projectId}`);
   }
 }
